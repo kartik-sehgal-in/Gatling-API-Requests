@@ -10,7 +10,7 @@ class PostUpdateCart extends Simulation {
   val sentHeaders = Map ("v" -> "6.5.6", "Content-Type" -> "application/json;charset=utf-8", "os" -> "android", "os_version" -> "7.0")
 
 	val httpProtocol = http
-		.baseURL("https://mobapipreprod.snapdeal.com")
+		.baseURL("https://mobileapi.snapdeal.com")
   
 	val scn = scenario("scenario")
 		.exec(http("request_0")
