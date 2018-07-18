@@ -14,7 +14,7 @@ class PostRecentUpadtedOrders extends Simulation {
   
 	val scn = scenario("scenario")
 		.exec(http("request_0")
-		.post("/service/user/login/v1/loginWithOTP")
+		.post("/service/order/recentUpdatedOrders")
     .headers(sentHeaders)
     
    .body(StringBody("""
