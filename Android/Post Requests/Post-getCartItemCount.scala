@@ -1,4 +1,3 @@
-
 import scala.concurrent.duration._
 
 import io.gatling.core.Predef._
@@ -11,10 +10,6 @@ class PostGetCartItemCount extends Simulation {
 
 	val httpProtocol = http
 		.baseURL("https://mobileapi.snapdeal.com")
-  	val writer = {
-    val fos = new java.io.FileOutputStream("D:/gatling-charts-highcharts-bundle-2.3.1/user-files/simulations/body.json")
-    new java.io.PrintWriter(fos,true)
-}
 
 	val scn = scenario("scenario")
 	.exec(http("request_1")
@@ -46,13 +41,6 @@ class PostGetCartItemCount extends Simulation {
                       """)).asJSON
     
     .check(status.is(200))
-    .check(bodyString.saveAs("Body"))
 )
-
-.exec {session =>
-  writer.println("Body = " + session("Body").as[String])
-  session
-  
-  }
 	setUp(scn.inject(atOnceUsers(1))).protocols(httpProtocol)
 }
