@@ -13,24 +13,39 @@ class PostDeleteProduct extends Simulation {
 		.baseURL("https://mobileapi.snapdeal.com")
   
 	val scn = scenario("scenario")
-		.exec(http("request_0")
-		.post("/service/wishlist/deleteProduct")
+	.exec(http("request_1")
+		.post("/service/user/login/v2/loginWithEmail")
     .headers(sentHeaders)
-    
+
    .body(StringBody("""
-                        {
-                          "deviceId": "290b4bc0d40591e",
-                          "responseProtocol": "PROTOCOL_JSON",
-                          "version": "v3",
-                          "requestProtocol": "PROTOCOL_JSON",
-                          "wfDataRequired": "false",
-                          "pageName": "tabbedHome",
-                          "apiKey": "snapdeal"
-                        }
+{
+	"password": "12chachacha",
+	"emailId": "kartiksehgal3@gmail.com",
+	"responseProtocol": "PROTOCOL_JSON",
+	"apiKey": "snapdeal",
+	"requestProtocol": "PROTOCOL_JSON"
+}
                       """)).asJSON
     
     .check(status.is(200))
-    .check(bodyString.saveAs("Body"))
+            .check(header("Login-Token").saveAs("Token"))
+  )	
+  
+	  .exec(http("request_0")
+		.post("/service/wishlist/deleteProduct")
+    .headers(Map ("v" -> "6.5.6", "Content-Type" -> "application/json;charset=utf-8", "os" -> "android", "os_version" -> "7.0", "Login-Token"-> "${Token}"))        
+    
+   .body(StringBody("""
+                      {
+	"collectionName": "",
+	"responseProtocol": "PROTOCOL_JSON",
+	"apiKey": "snapdeal",
+	"requestProtocol": "PROTOCOL_JSON",
+	"pogIds": ["75246"]
+}
+                      """)).asJSON
+    
+    .check(status.is(200))
 )
 
 	setUp(scn.inject(atOnceUsers(1))).protocols(httpProtocol)

@@ -19,14 +19,10 @@ class PostisEmailExists extends Simulation {
     
    .body(StringBody("""
                         {
-                          "deviceId": "290b4bc0d40591e",
-                          "responseProtocol": "PROTOCOL_JSON",
-                          "version": "v3",
-                          "requestProtocol": "PROTOCOL_JSON",
-                          "wfDataRequired": "false",
-                          "pageName": "tabbedHome",
-                          "apiKey": "snapdeal"
-                        }
+	"email": "kartiksehgal3@gmail.com",
+	"responseProtocol": "PROTOCOL_JSON",
+	"apiKey": "snapdeal",
+	"requestProtocol": "
                       """)).asJSON
     
     .check(status.is(200))

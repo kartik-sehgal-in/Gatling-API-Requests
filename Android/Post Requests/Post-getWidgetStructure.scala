@@ -18,15 +18,20 @@ class PostGetWidgetStructure extends Simulation {
     .headers(sentHeaders)
     
    .body(StringBody("""
-                        {
-                          "deviceId": "290b4bc0d40591e",
-                          "responseProtocol": "PROTOCOL_JSON",
-                          "version": "v3",
-                          "requestProtocol": "PROTOCOL_JSON",
-                          "wfDataRequired": "false",
-                          "pageName": "tabbedHome",
-                          "apiKey": "snapdeal"
-                        }
+{
+	"deviceId": "290b4bc0d40591e",
+	"emailId": "",
+	"zone": null,
+	"responseProtocol": "PROTOCOL_JSON",
+	"pincode": null,
+	"mobile": null,
+	"version": "v3",
+	"requestProtocol": "PROTOCOL_JSON",
+	"wfDataRequired": "false",
+	"pageName": "tabbedHome",
+	"apiKey": "snapdeal",
+	"rawUrl": ""
+}
                       """)).asJSON
     
     .check(status.is(200))

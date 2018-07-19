@@ -11,27 +11,25 @@ class PostInsertItemToCart extends Simulation {
 
 	val httpProtocol = http
 		.baseURL("https://mobileapi.snapdeal.com")
-  
+
 	val scn = scenario("scenario")
 		.exec(http("request_0")
 		.post("/service/nativeCart/v2/insertItemToCart")
     .headers(sentHeaders)
     
    .body(StringBody("""
-                        {
-                          "deviceId": "290b4bc0d40591e",
-                          "responseProtocol": "PROTOCOL_JSON",
-                          "version": "v3",
-                          "requestProtocol": "PROTOCOL_JSON",
-                          "wfDataRequired": "false",
-                          "pageName": "tabbedHome",
-                          "apiKey": "snapdeal"
-                        }
+                       {
+	"pincode": "122022",
+	"items": [{
+		"catalogId": 648763129960,
+		"supc": "SDL882835290",
+		"vendorCode": "S25c97",
+		"quantity": 1
+	}]
+}
                       """)).asJSON
     
     .check(status.is(200))
-    .check(bodyString.saveAs("Body"))
 )
-
 	setUp(scn.inject(atOnceUsers(1))).protocols(httpProtocol)
 }

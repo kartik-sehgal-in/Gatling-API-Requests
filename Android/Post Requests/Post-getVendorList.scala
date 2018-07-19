@@ -18,19 +18,17 @@ class PostGetVendorList extends Simulation {
     .headers(sentHeaders)
     
    .body(StringBody("""
-                        {
-                          "deviceId": "290b4bc0d40591e",
-                          "responseProtocol": "PROTOCOL_JSON",
-                          "version": "v3",
-                          "requestProtocol": "PROTOCOL_JSON",
-                          "wfDataRequired": "false",
-                          "pageName": "tabbedHome",
-                          "apiKey": "snapdeal"
-                        }
+{
+	"zone": "Z9",
+	"supc": "SDL775914720",
+	"responseProtocol": "PROTOCOL_JSON",
+	"pincode": "122022",
+	"apiKey": "snapdeal",
+	"requestProtocol": "PROTOCOL_JSON"
+}
                       """)).asJSON
     
     .check(status.is(200))
-    .check(bodyString.saveAs("Body"))
 )
 
 	setUp(scn.inject(atOnceUsers(1))).protocols(httpProtocol)

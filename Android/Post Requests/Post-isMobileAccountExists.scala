@@ -18,15 +18,12 @@ class PostIsMobileAccountExists extends Simulation {
     .headers(sentHeaders)
     
    .body(StringBody("""
-                        {
-                          "deviceId": "290b4bc0d40591e",
-                          "responseProtocol": "PROTOCOL_JSON",
-                          "version": "v3",
-                          "requestProtocol": "PROTOCOL_JSON",
-                          "wfDataRequired": "false",
-                          "pageName": "tabbedHome",
-                          "apiKey": "snapdeal"
-                        }
+{
+	"responseProtocol": "PROTOCOL_JSON",
+	"apiKey": "snapdeal",
+	"mobileNumber": "9958571972",
+	"requestProtocol": "PROTOCOL_JSON"
+}
                       """)).asJSON
     
     .check(status.is(200))

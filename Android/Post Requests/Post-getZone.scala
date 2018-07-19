@@ -18,15 +18,14 @@ class PostGetZone extends Simulation {
     .headers(sentHeaders)
     
    .body(StringBody("""
-                        {
-                          "deviceId": "290b4bc0d40591e",
-                          "responseProtocol": "PROTOCOL_JSON",
-                          "version": "v3",
-                          "requestProtocol": "PROTOCOL_JSON",
-                          "wfDataRequired": "false",
-                          "pageName": "tabbedHome",
-                          "apiKey": "snapdeal"
-                        }
+{
+	"latitude": "0.0",
+	"responseProtocol": "PROTOCOL_JSON",
+	"longitude": "0.0",
+	"pincode": "122022",
+	"apiKey": "snapdeal",
+	"requestProtocol": "PROTOCOL_JSON"
+}
                       """)).asJSON
     
     .check(status.is(200))
