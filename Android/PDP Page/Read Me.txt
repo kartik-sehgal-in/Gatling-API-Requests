@@ -1,0 +1,1 @@
+Scenario to open PDP page and scroll down by calling getInfiniteFeed.
