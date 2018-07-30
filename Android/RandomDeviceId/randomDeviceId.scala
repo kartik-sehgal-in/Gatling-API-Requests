@@ -16,11 +16,6 @@ class randomDeviceId extends Simulation {
  val infiniteFeeder = Iterator.continually(
    Map("Key" -> Random.alphanumeric.take(15).mkString)
 ) 
-		
-	val writer = {
-    val fos = new java.io.FileOutputStream("D:/gatling-charts-highcharts-bundle-2.3.1/user-files/simulations/body.json")
-    new java.io.PrintWriter(fos,true)
-}
   
 	val scn = scenario("RecordedSimulation")
 	  .feed(infiniteFeeder)
@@ -41,13 +36,7 @@ class randomDeviceId extends Simulation {
                       """)).asJSON
     
     .check(status.is(200))
-    .check(bodyString.saveAs("Body"))
 )
-.exec {session =>
-  writer.println("Body = " + session("Body").as[String])
-  session
-  
-  }
 
 	setUp(scn.inject(atOnceUsers(2))).protocols(httpProtocol)
 }
